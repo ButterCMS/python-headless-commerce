@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}Products{% endblock %}
+{% block content %}
+
+<h1>{{ data.name }}</h1>
+
+<div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+        Categories
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+        {% for category in categories.producttypes %}
+            <li><a class="dropdown-item" href="/{{category.type}}">{{ category.type }}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+            
+<br>
+
+<div class="row">
+    {% for item in data %}
+        <div class="card" style="width: 18rem;">
+            <img class="img-thumbnail" src={{item.product_image}}>
+    
+            <div class="card-body">
+                <h4 class="card-title">{{ item.product_name }}</h4>
+
+                <a href="/product/{{item.product_name}}" class="btn btn-primary">View</a>
+            </div>
+        </div> <br>
+    {% endfor %}
+</div>
+
+{% endblock %}
